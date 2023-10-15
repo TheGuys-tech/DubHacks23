@@ -20,6 +20,8 @@ export async function load({ params }) {
     let results = await col.find().toArray();
 
     return {
+        error: false,
+        error_msg: "",
         users: JSON.parse(JSON.stringify(results ,(key,value) => key === '_id'? value.toString(value) : value))
     }
 
