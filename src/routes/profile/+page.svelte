@@ -5,19 +5,21 @@
 
 <style>
     .container {
-        width: 90%;
+        width: calc(100vw - 40px);
         /* max-width: 600px; */
         margin: 50px auto;
         padding: 20px;
-        background-color: #FFFFFF;
+        background-color: white;
         display: flex;
+        justify-content: center;
         gap: 20px;
     }
 
     .sidebar, .settings-content {
         padding: 20px;
-        background-color: #FFFFFF;
+        background-color: white;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 150px;
     }
 
     .sidebar-item {
@@ -70,6 +72,7 @@
 
     .field {
         flex: 1; /* equally distribute space between the fields */
+        max-width: 400px;
     }
 </style>
 
@@ -95,12 +98,7 @@
 
     <div class="settings-content">
         {#if selectedSection === 'profile'}
-            <div class="input-container">
-                <div class="field">
-                    <label for="display-name">Username</label>
-                    <input type="text" id="display-name" placeholder="Enter your username">
-                </div>
-        
+            <div class="input-container">   
                 <div class="field">
                     <label for="real-name">Name</label>
                     <input type="text" id="real-name" placeholder="Enter your name">
