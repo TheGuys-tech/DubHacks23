@@ -1,9 +1,7 @@
 <script>
     let startDateYear = 2023;
     let startDateMonth = 10;
-    let startDateDay = 14;
-    let startDay = 1;
-    let endDay = 5;
+    let startDateDay = 15;
     let days = [
         "Sun",
         "Mon",
@@ -15,14 +13,20 @@
     ];
 
     let cellHasEvent = [];
-    for (let day = startDay; day <= endDay; day++) {
+    for (let day = 0; day <= 6; day++) {
         let dayData = [];
         for (let hour = 0; hour < 48; hour++)
         {
-            dayData.push({hasEvent: false, events: ["No event"]});
+            dayData.push({hasEvent: false, events: ["No event"], eventIds: []});
         }
         cellHasEvent.push(dayData);
     }
+    cellHasEvent[3][14] = {hasEvent:true, events: ["Study group"], eventIds: ["12387919792517"]}
+    cellHasEvent[3][15] = {hasEvent:true, events: ["Study group", "Physics Exam"], eventIds: ["12387919792517", "adeeb8ea08be9"]}
+    cellHasEvent[3][16] = {hasEvent:true, events: ["Physics Exam"], eventIds: ["adeeb8ea08be9"]}
+
+    let selectedDay = -1;
+    let selectedHour = -1;
 
     /*for (let i = 0; i < data.events.length; i++) {
         let event = data.events[i];
@@ -37,24 +41,50 @@
 <input type="number" min="1" max="31" bind:value={startDateDay} />
 <input type="number" min="1970" bind:value={startDateYear}/>
 
-<div class="week-calendar">
-    <div class="week-calendar-day">
-        <div class="week-calendar-dayname" style="padding-bottom: 2px;">Time</div>
-        {#each {length: 24} as _, hour}
-            <div class="week-calendar-time-key">{hour < 12 ? (hour == 0 ? "12 AM" : hour + " AM") : hour - 12 == 0 ? "12 PM" : hour - 12 + " PM"}</div>
-        {/each}
-    </div>
-    {#each {length: endDay - startDay + 1} as _, day}
+<div class="week-calendar-partitioned">
+    <div class="week-calendar">
         <div class="week-calendar-day">
-            <div class="week-calendar-dayname">{days[startDay + day]}</div>
-            {#each {length: 48} as _, hour}
-                <div class="week-calendar-hour {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" data-calendar-hour={hour}><span class="tooltiptext">{cellHasEvent[day][hour].events.toString()}</span></div>
+            <div class="week-calendar-dayname" style="padding-bottom: 2px;">Time</div>
+            {#each {length: 24} as _, hour}
+                <div class="week-calendar-time-key">{hour < 12 ? (hour == 0 ? "12 AM" : hour + " AM") : hour - 12 == 0 ? "12 PM" : hour - 12 + " PM"}</div>
             {/each}
         </div>
-    {/each}
+        {#each {length: 7} as _, day}
+            <div class="week-calendar-day">
+                <div class="week-calendar-dayname">{days[day]}</div>
+                {#each {length: 48} as _, hour}
+                    <div class="week-calendar-hour {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" on:click|preventDefault={() => {selectedDay = day; selectedHour = hour}}><span class="tooltiptext">
+                        {#each cellHasEvent[day][hour].events as event}
+                        {event}
+                        <br>
+                        {/each}
+                    </span></div>
+                {/each}
+            </div>
+        {/each}
+    </div>
+    <div class="events">
+        {#if selectedDay >= 0 && selectedHour >= 0}
+        <h3>Events:</h3>
+        {#each {length: cellHasEvent[selectedDay][selectedHour].eventIds.length} as _, event}
+        <div class="event">
+            <div class="event-title">{cellHasEvent[selectedDay][selectedHour].events[event]}</div>
+            <div class="event-info">Start Time: </div>
+            <div class="event-info">End Time: </div>
+            <div class="event-info">Hosted By: </div>
+            <div class="event-info">Description: </div>
+            <div class="event-button"><button>Invite a friend</button></div>
+        </div>
+        {/each}
+        {/if}
+    </div>
 </div>
 
 <style>
+    .week-calendar-partitioned {
+        display: flex;
+    }
+
     .week-calendar {
         display: flex;
     }
@@ -103,8 +133,29 @@
         left: 105%; 
     }
 
-
     .week-calendar-hour:hover .tooltiptext {
         visibility: visible;
+    }
+
+    .events {
+        margin-left: 10px;
+    }
+
+    .event {
+        width: 200px;
+        text-overflow: ellipsis;
+        background-color: whitesmoke;
+        border: 1px solid black;
+    }
+
+    .event-title {
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    .event-button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 </style>
