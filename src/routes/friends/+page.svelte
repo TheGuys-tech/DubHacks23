@@ -9,42 +9,54 @@
     }
 </script>
 
-<h1>Friends</h1>
-{#if data.error}
-<div>{data.error_msg}</div>
-{:else}
-{#if postData != undefined}
-<div style="background-color: burlywood; width: 100%;">{postData}</div>
-{/if}
-{#each friends as friend}
-<div class="user-profile-card">
-    <div class="user-profile-card-namebox">
-        <img class="user-profile-icon" src="images/user-icon.png" alt="User profile icon"/>
-        <p class="user-profile-card-name">{friend.name}</p>
+<div class="page-center">
+    <h1>Friends</h1>
+    {#if data.error}
+    <div>{data.error_msg}</div>
+    {:else}
+    {#if postData != undefined}
+    <div style="background-color: burlywood; width: 100%;">{postData}</div>
+    {/if}
+    {#each friends as friend}
+    <div class="user-profile-card">
+        <div class="user-profile-card-namebox">
+            <img class="user-profile-icon" src="images/user-icon.png" alt="User profile icon"/>
+            <p class="user-profile-card-name">{friend.name}</p>
+        </div>
+        <form action="/friends" method="POST">
+            <input type="hidden" name="action" value="remove" />
+            <input type="hidden" name="friendId" value="{friend._id}" />
+            <input type="submit" value="Remove friend" />
+        </form>
     </div>
+    {/each}
+    <br>
     <form action="/friends" method="POST">
-        <input type="hidden" name="action" value="remove" />
-        <input type="hidden" name="friendId" value="{friend._id}" />
-        <input type="submit" value="Remove friend" />
+        <input type="hidden" name="action" value="add" />
+        <input name="friendId" />
+        <input type="submit" value="Add friend" />
     </form>
+    <p>Your FriendID: {data.users[me]._id}</p>
+    {/if}
 </div>
-{/each}
-<br>
-<form action="/friends" method="POST">
-    <input type="hidden" name="action" value="add" />
-    <input name="friendId" />
-    <input type="submit" value="Add friend" />
-</form>
-<p>Your FriendID: {data.users[me]._id}</p>
-{/if}
 
 <style>
+    .page-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .user-profile-card {
         width: 300px;
-        height: 100px;
+        height: min-content;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         border: 2px solid black;
+        background-color:whitesmoke;
+        border-radius: 5px;
+        margin-bottom: 5px;
     }
 
     .user-profile-card-namebox {
