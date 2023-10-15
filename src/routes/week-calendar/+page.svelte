@@ -34,20 +34,21 @@
 
         }
     }*/
-
+    /*
+    <div class="week-calendar-dateselect">
+        Selected week:
+        <input type="number" min="1" max="12" bind:value={startDateMonth} />
+        /
+        <input type="number" min="1" max="31" bind:value={startDateDay} />
+        /
+        <input type="number" min="1970" bind:value={startDateYear}/>    
+    </div>
+    */
 </script>
 
 
 <div class="week-calendar-container">
     <div class="week-calendar-container-vertical">
-        <div class="week-calendar-dateselect">
-            Selected week:
-            <input type="number" min="1" max="12" bind:value={startDateMonth} />
-            /
-            <input type="number" min="1" max="31" bind:value={startDateDay} />
-            /
-            <input type="number" min="1970" bind:value={startDateYear}/>    
-        </div>
         <div class="week-calendar-partitioned">
             <div class="week-calendar">
                 <div class="week-calendar-day">
