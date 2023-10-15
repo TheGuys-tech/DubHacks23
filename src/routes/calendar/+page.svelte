@@ -19,7 +19,7 @@
         let dayData = [];
         for (let hour = 0; hour < 48; hour++)
         {
-            dayData.push({hasEvent: false});
+            dayData.push({hasEvent: false, events: ["No event"]});
         }
         cellHasEvent.push(dayData);
     }
@@ -48,7 +48,7 @@
         <div class="week-calendar-day">
             <div class="week-calendar-dayname">{days[startDay + day]}</div>
             {#each {length: 48} as _, hour}
-                <div class="week-calendar-hour {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" data-calendar-hour={hour}></div>
+                <div class="week-calendar-hour {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" data-calendar-hour={hour}><span class="tooltiptext">{cellHasEvent[day][hour].events.toString()}</span></div>
             {/each}
         </div>
     {/each}
@@ -63,16 +63,19 @@
         text-align: right;
         height: 0px;
         padding-bottom: 23.2px;
+        user-select: none;
     }
 
     .week-calendar-day {
         width: 50px;
         text-align: center;
+        user-select: none;
     }
 
     .week-calendar-hour {
         border: 1px solid black;
         padding-bottom: 10px;
+        height: 0px;
     }
 
     .week-calendar-hour:hover {
@@ -82,5 +85,26 @@
 
     .week-calendar-hour.filled {
         background-color: orangered;
+    }
+
+    .week-calendar-hour .tooltiptext {
+        display: inline-block;
+        position: relative;
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+    
+        z-index: 1;
+        top: -5px;
+        left: 105%; 
+    }
+
+
+    .week-calendar-hour:hover .tooltiptext {
+        visibility: visible;
     }
 </style>
