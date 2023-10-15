@@ -2,7 +2,7 @@ import {MongoClient} from "mongodb"
 import { MONGO_URL } from "$env/static/private"
 
 export async function load({ params }) {
-	let client = new MongoClient("mongodb://127.0.0.1:27017");
+	let client = new MongoClient(MONGO_URL);
     try {
         await client.connect();
     }
