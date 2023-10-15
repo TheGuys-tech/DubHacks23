@@ -1,7 +1,9 @@
 <script>
-    import { page } from '$app/stores';
-    const month = $page.url.searchParams.get("month") || (new Date()).getMonth();
-    const year = $page.url.searchParams.get("year") || (new Date).getFullYear();
+    export let data;
+
+    console.log(data);
+    let month = data.submitMonth || (new Date()).getMonth();
+    let year = data.submitYear || (new Date).getFullYear();
     const months = [
         "January",
         "February",
@@ -36,7 +38,17 @@
 <div class="container">
     <div class="calendar">
         <div class="calendar-header">
+            <form action="/calendar" method="POST" style="margin-left: 10px; margin-right: auto;">
+                <input type="hidden" name="month" value="{(month + 11) % 12}" />
+                <input type="hidden" name="year" value="{month - 1 < 0 ? year - 1 : year}" />
+                <input type="submit" class="monthchanger" value="&lt;" />
+            </form>
             {months[month]} {year}
+            <form action="/calendar" method="POST" style="margin-right: 10px; margin-left: auto;">
+                <input type="hidden" name="month" value="{(month + 1) % 12}" />
+                <input type="hidden" name="year" value="{month + 1 > 11 ? year + 1 : year}" />
+                <input type="submit" class="monthchanger" value="&gt;" />
+            </form>
         </div>
         <div class="calendar-day-header">
             <div class="calendar-day-day">Sun</div>
@@ -79,6 +91,8 @@
         text-align: center;
         height: 40px;
         line-height: 40px;
+        display: flex;
+        flex-direction: row;
     }
 
     .calendar-week {
@@ -109,5 +123,15 @@
         width: 50px;
         border: 1px solid black;
         padding: 5px;
+    }
+
+    .monthchanger {
+        font-size: 1.5em;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        user-select: none;
+        background-color: transparent;
+        border: 0px;
     }
 </style>
