@@ -24,6 +24,30 @@
     cellHasEvent[3][14] = {hasEvent:true, events: ["Study group"], eventIds: ["12387919792517"]}
     cellHasEvent[3][15] = {hasEvent:true, events: ["Study group", "Physics Exam"], eventIds: ["12387919792517", "adeeb8ea08be9"]}
     cellHasEvent[3][16] = {hasEvent:true, events: ["Physics Exam"], eventIds: ["adeeb8ea08be9"]}
+    cellHasEvent[3][30] = {hasEvent:true, events: ["Homework 7"], eventIds: ["1924707275910"]}
+    cellHasEvent[2][33] = {hasEvent:true, events: ["Coding Cougs"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][16] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][17] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][18] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][19] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][20] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[4][21] = {hasEvent:true, events: ["Physics Lab"], eventIds: ["19247071275910"]}
+    cellHasEvent[6][24] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[6][25] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[6][26] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[6][27] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[6][28] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[6][29] = {hasEvent:true, events: ["D&D Club"], eventIds: ["192470751275910"]}
+    cellHasEvent[1][33] = {hasEvent:true, events: ["CPTS223"], eventIds: ["192470712575910"]}
+    cellHasEvent[1][34] = {hasEvent:true, events: ["CPTS223"], eventIds: ["192470712575910"]}
+    cellHasEvent[3][33] = {hasEvent:true, events: ["CPTS223"], eventIds: ["192470712575910"]}
+    cellHasEvent[3][34] = {hasEvent:true, events: ["CPTS223"], eventIds: ["192470712575910"]}
+    cellHasEvent[2][28] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
+    cellHasEvent[2][29] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
+    cellHasEvent[2][30] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
+    cellHasEvent[4][28] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
+    cellHasEvent[4][29] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
+    cellHasEvent[4][30] = {hasEvent:true, events: ["CPTS260"], eventIds: ["1924707152575910"]}
 
     let selectedDay = -1;
     let selectedHour = -1;
@@ -61,7 +85,7 @@
                     <div class="week-calendar-day">
                         <div class="week-calendar-dayname">{days[day]}</div>
                         {#each {length: 48} as _, hour}
-                            <div class="week-calendar-hour {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" on:click|preventDefault={() => {selectedDay = day; selectedHour = hour}}><span class="tooltiptext">
+                            <div class="week-calendar-hour {hour < 14 || hour > 37 ? "night" : ""} {cellHasEvent[day][hour].hasEvent ? "filled" : ""}" on:click|preventDefault={() => {selectedDay = day; selectedHour = hour}}><span class="tooltiptext">
                                 {#each cellHasEvent[day][hour].events as event}
                                 {event}
                                 <br>
@@ -140,6 +164,13 @@
         border: 1px solid black;
         padding-bottom: 10px;
         height: 0px;
+    }
+
+    .week-calendar-hour.night {
+        border: 1px solid black;
+        padding-bottom: 10px;
+        height: 0px;
+        background-color: rgb(200,200,200);
     }
 
     .week-calendar-hour:hover {

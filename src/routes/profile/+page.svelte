@@ -1,6 +1,8 @@
 <script>
-    // JavaScript
+    export let data;
+    export let postData;
     let selectedSection = 'profile';
+    let errorMsg = "";
 </script>
 
 <style>
@@ -74,6 +76,23 @@
         flex: 1; /* equally distribute space between the fields */
         max-width: 400px;
     }
+
+    .savebutton {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 0px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: rgb(0, 255, 255);
+    }
+
+    .savebutton:hover {
+        background-color: rgba(0, 255, 255, 0.5);
+        background-blend-mode: multiply;
+        cursor: pointer;
+    }
 </style>
 
 <div class="container">
@@ -98,14 +117,17 @@
 
     <div class="settings-content">
         {#if selectedSection === 'profile'}
-            <div class="input-container">   
-                <div class="field">
-                    <label for="real-name">Name</label>
-                    <input type="text" id="real-name" placeholder="Enter your name">
+            <div>
+                <div class="input-container">   
+                    <div class="field">
+                        <label for="real-name">Name</label>
+                        <input type="text" id="real-name" name="name" placeholder="Enter your name" value={data.users[0].name}>
+                    </div>
                 </div>
+                <input on:click={() => errorMsg = "Success!"} type="submit" class="savebutton" value="Save">
             </div>
 
-
+            <p>{errorMsg}</p>
         {:else if selectedSection === 'settings'}
             <p>Login and security settings...</p>
         <!-- ... other sections based on selectedSection value ... -->
