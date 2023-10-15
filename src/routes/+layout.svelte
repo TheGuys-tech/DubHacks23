@@ -4,7 +4,6 @@
     <a href="/">Home</a>
     <a href="/calendar">Calendar</a>
     <a href="/friends">Friends</a>
-    <a href="/groups">Groups</a>
     <div class="nav-spacer"></div>
     <a href="/profile">Profile</a>
 </div>
