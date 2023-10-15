@@ -1,61 +1,63 @@
-<div class="nav">
-    <img src="images/groupSyncLogo.png" class="app-logo" alt="Logo"/>
-    <a href="/" class="app-title"><div>GroupSync</div></a>
-    <a href="/calendar" class="page"><div>Calendar</div></a>
-    <a href="/friends" class="page"><div>Friends</div></a>
-    <a href="/profile" class="profile-image"><img src="images/user-icon.png" alt="Profile"/></a>
+<div class="navbar">
+    <div>GroupSync</div>
+    <div class="nav-spacer"></div>
+    <a href="/">Home</a>
+    <a href="/calendar">Calendar</a>
+    <a href="/friends">Friends</a>
+    <a href="/groups">Groups</a>
+    <div class="nav-spacer"></div>
+    <a href="/profile">Profile</a>
 </div>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="spacing"></div>
 
 <style>
     :global(body) {
         margin: 0;
-        background-color: antiquewhite;
+        background-color: white;
+        font-family: DM Sans;
     }
 
-    .nav {
-        display:flex;
-        width: 100%;
-        height: 60px;
-        background-color: aquamarine;
-    }
-
-    .app-title {
-        font-size: 1.5em;
-        padding: 5px;
-        display:flex;
-        align-items: center;
-        color: black;
-        text-decoration: none;
-    }
-
-    .page {
-        padding: 10px;
+    .navbar {
+        background-color: #fff; /* White background */
+        border-bottom: 1px solid #e0e0e0; /* Light gray border at the bottom */
+        position: fixed; /* Fix the navbar to the top */
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5%; 
         display: flex;
         align-items: center;
-        color: black;
-        text-decoration: none;
-        min-width: 50px;
-        text-align: center;
+        justify-content: center;
+        padding: 0 20px; /* Padding on the sides */
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /*  shadow */
+        z-index: 1000; /* navbar on top */
+        font-family: DM Sans;
+        font-weight: 550;
+        font-size: 13px;
     }
 
-    .page div {
-        width: 100%;
+    .navbar a {
+        color:#777E90;
+        text-decoration: none; /* Remove underline */
+        padding: 10px 5px; /* Add some space around the links */
+        transition: color 0.3s ease; /* Smooth transition for color change */
+        margin: 0 10px;
     }
 
-    .profile-image {
+    .navbar a:hover {
+        color: #000; /* Black text on hover */
+    }
+
+    .nav-spacer {
         margin-left: auto;
-        width: 60px;
-        height: 60px;
-        padding: 5px;
     }
 
-    .profile-image img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .page:hover {
-        background-color: darkcyan;
+    .spacing {
+        margin-top: 50px;
     }
 </style>
 
