@@ -1,6 +1,6 @@
 <script>
     // JavaScript
-    let selectedSection = 'personal_info';
+    let selectedSection = 'profile';
 </script>
 
 <style>
