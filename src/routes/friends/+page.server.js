@@ -14,7 +14,7 @@ export async function load({ params }) {
         };
     }
 
-    let db = client.db("users");
+    let db = client.db("groupsync");
     let col = db.collection("users");
 
     let results = await col.find().toArray();
