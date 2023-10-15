@@ -4,17 +4,7 @@
     if (!data.error)
     {
         let me = 0;
-        for (let i = 0; i < data.users[me].friends.length; i++) {
-            for (let j = 0; j < data.users.length; j++)
-            {
-                console.log(data.users[j]._id);
-                console.log(data.users[me].friends[i]);
-                if (data.users[j]._id == data.users[me].friends[i])
-                {
-                    friends.push(data.users[j]);
-                }
-            }
-        }
+        friends = data.users[me].friends.map((id) => data.users.filter((u) => u._id == id)[0]);
     }
 </script>
 
