@@ -85,6 +85,7 @@
                     <div class="event-button"><button>Invite a friend</button></div>
                 </div>
                 {/each}
+                <button>Create New Event</button>
                 {/if}
             </div>
         </div>
