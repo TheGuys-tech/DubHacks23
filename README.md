@@ -1,18 +1,10 @@
-# create-svelte
+# GroupSync
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An app to connect students and coordinate meeting times
 
-## Creating a project
+### NOTE
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+If you want to view the project as it was upon submission to DubHacks 2023, please either switch to the dubhacks-submission branch or check out the Original DubHacks Submission release.
 
 ## Developing
 
